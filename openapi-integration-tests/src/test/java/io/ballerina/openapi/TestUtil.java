@@ -220,4 +220,8 @@ public class TestUtil {
                             " output: %s : generated output : %s", msg, generatedLog));
         }
     }
+
+    public static String getOutput(Path path) throws IOException {
+        return Files.readString(path).replaceAll("\r", "");
+    }
 }

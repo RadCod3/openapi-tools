@@ -1,0 +1,9 @@
+ERROR [service.bal:(7:1,7:1)] missing identifier (BCE0400)
+  |
+7 | }
+  | ^
+
+ERROR [service.bal:(7:1,7:1)] undefined field '$missingNode$_0' in record 'ballerina/openapi:1.9.0:ServiceInformation' (BCE2023)
+  |
+7 | }
+  | ^

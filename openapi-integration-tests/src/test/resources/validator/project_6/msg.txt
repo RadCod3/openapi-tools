@@ -1,0 +1,13 @@
+ERROR [service.bal:(10:115,10:124)] implementation type does not match with OpenAPI contract type (expected 'string',found 'int') for the parameter 'mode' in HTTP method 'get' that associated with the path '/weather'. (OPENAPI_VALIDATOR_006)
+   |
+10 |     resource function get weather(string? id, string? lat, string? lon, string? zip, string? units, string? lang, int? mode) returns string {
+   |                                                                                                                   ^^^^^^^^^
+
+ERROR [service.bal:(10:5,12:6)] missing OpenAPI contract parameter 'q' in the counterpart Ballerina service resource (method: 'get', path: '/weather'). (OPENAPI_VALIDATOR_010)
+   |
+10 |     resource function get weather(string? id, string? lat, string? lon, string? zip, string? units, string? lang, int? mode) returns string {
+ : |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ : |                                                                       :
+ : |                                                                       :
+12 |     }
+   | ^^^^^

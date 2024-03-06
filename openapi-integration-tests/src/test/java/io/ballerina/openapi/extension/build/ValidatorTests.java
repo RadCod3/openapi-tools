@@ -35,11 +35,13 @@ import java.util.stream.Stream;
 
 import static io.ballerina.openapi.TestUtil.DISTRIBUTIONS_DIR;
 import static io.ballerina.openapi.TestUtil.RESOURCES_PATH;
+import static io.ballerina.openapi.TestUtil.getOutput;
 
 /**
  * This test class is for contain the openapi validator plugin tests.
  */
 public class ValidatorTests {
+
     public static final String DISTRIBUTION_FILE_NAME = DISTRIBUTIONS_DIR.toString();
     public static final Path TEST_RESOURCE = Paths.get(RESOURCES_PATH.toString() + "/validator");
     public static final String WHITESPACE_PATTERN = "\\s+";
@@ -140,11 +142,7 @@ public class ValidatorTests {
         List<String> buildArgs = new LinkedList<>();
         buildArgs.add("project_6");
         InputStream successful = TestUtil.executeOpenapiBuild(DISTRIBUTION_FILE_NAME, TEST_RESOURCE, buildArgs);
-        String msg = "ERROR [service.bal:(10:115,10:124)] implementation type does not match with OpenAPI contract" +
-                " type (expected 'string',found 'int') for the parameter 'mode' in HTTP method 'get' that associated" +
-                " with the path '/weather'.\n" +
-                "ERROR [service.bal:(10:5,12:6)] missing OpenAPI contract parameter 'q' in the counterpart Ballerina" +
-                " service resource (method: 'get', path: '/weather').\n";
+        String msg = getOutput(Path.of(TEST_RESOURCE.toString(), "project_6", "msg.txt"));
         try (BufferedReader br = new BufferedReader(new InputStreamReader(successful))) {
             Stream<String> logLines = br.lines();
             String generatedLog = logLines.collect(Collectors.joining(System.lineSeparator()));
@@ -164,9 +162,7 @@ public class ValidatorTests {
         List<String> buildArgs = new LinkedList<>();
         buildArgs.add("project_7");
         InputStream successful = TestUtil.executeOpenapiBuild(DISTRIBUTION_FILE_NAME, TEST_RESOURCE, buildArgs);
-        String msg = " ERROR [service.bal:(7:1,7:1)] missing identifier\n" +
-                "    ERROR [service.bal:(7:1,7:1)] undefined field '$missingNode$_0' in record" +
-                " 'ballerina/openapi:";
+        String msg = getOutput(Path.of(TEST_RESOURCE.toString(), "project_7", "msg.txt"));
         try (BufferedReader br = new BufferedReader(new InputStreamReader(successful))) {
             Stream<String> logLines = br.lines();
             String generatedLog = logLines.collect(Collectors.joining(System.lineSeparator()));
